@@ -36,6 +36,8 @@ export const mocks = [
   }
 ];
 
+export type displayType = 'relative' | 'absolute';
+
 export interface StockData{
     symbol: string,
     companyName: string,

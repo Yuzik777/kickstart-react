@@ -5,7 +5,8 @@ import {Header} from './header';
 import {Filters} from './filters';
 import {FilterOptions, StockData, mocks} from './mocks';
 import {Stocks} from './stocks'
-
+import {displayGrowthContext} from './contexts/displayGrowth';
+ 
 const filterStocks = (stocks: StockData[], fo: FilterOptions): StockData[] => {
   console.log(fo);
   return stocks;
@@ -13,13 +14,15 @@ const filterStocks = (stocks: StockData[], fo: FilterOptions): StockData[] => {
 
 const App = () => {
   const handleFilterChange = (fo:FilterOptions) => {
-    filterStocks
+    return filterStocks(mocks, fo);
   };
   return (
     <>
     <Header></Header>
     <Filters name="" sortByGain="none" rangeFrom="" rangeTo="" onFiltersApplied={handleFilterChange}/>
-    <Stocks items={mocks} />
+    <displayGrowthContext.Provider value='relative'> 
+      <Stocks items={mocks} />
+    </displayGrowthContext.Provider >
     </>
   );
 }
