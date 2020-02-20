@@ -36,21 +36,23 @@ export const mocks = [
   }
 ];
 
-export type displayType = 'relative' | 'absolute';
+export type ToolbarState = "none" | "search" | "filter" | "settings";
 
-export interface StockData{
-    symbol: string,
-    companyName: string,
-    price: number,
-    change: number,
-    changePercent: number
+export type DisplayType = "relative" | "absolute";
+
+export interface StockData {
+  symbol: string;
+  companyName: string;
+  price: number;
+  change: number;
+  changePercent: number;
 }
 
-export type sortingOption = 'none' | 'asc' | 'desc';
+export type sortingOption = "none" | "asc" | "desc";
 
 export interface FilterOptions {
-  name: string,
-  sortByGain: sortingOption,
-  rangeFrom: string,
-  rangeTo: string
+  name: string;
+  sortByGain: sortingOption;
+  rangeFrom: string;
+  rangeTo: string;
 }
