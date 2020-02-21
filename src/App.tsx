@@ -3,7 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Header } from "./header";
 import { Filters } from "./filters";
-import { FilterOptions, StockData, mocks, ToolbarState } from "./mocks";
+import {
+  FilterOptions,
+  StockData,
+  mocks,
+  ToolbarState as AppState
+} from "./mocks";
 import { Stocks } from "./stocks";
 import { filterStocks } from "./lib/stockFilter";
 import { displayGrowthContext } from "./contexts/displayGrowth";
@@ -26,7 +31,7 @@ const filterValidStocks = async (stocks: StockData[]): Promise<StockData[]> => {
 
 const App = () => {
   const [stocks, setStocks] = useState<StockData[]>([]);
-  const [toolbarState, setToolbarState] = useState<ToolbarState>("none");
+  const [appState, setAppState] = useState<AppState>("none");
 
   useEffect(() => {
     const stockSymbols = [
@@ -62,19 +67,17 @@ const App = () => {
     const stockSymbols = stocks.map(item => item.symbol);
     loadStocks(stockSymbols)
       .then(filterValidStocks)
-      .then(stocks => setStocks(stocks));
+      .then(setStocks);
   };
 
   return (
     <>
       <Header
-        {...{ toolbarState, setToolbarState }}
+        {...{ toolbarState: appState, setToolbarState: setAppState }}
         onRefreshStocks={handleRefreshStocks}
       ></Header>
       <div
-        className={
-          "filtersWrapper" + (toolbarState === "filter" ? "" : " hidden")
-        }
+        className={"filtersWrapper" + (appState === "filter" ? "" : " hidden")}
       >
         <Filters {...filters} onFiltersApplied={setFilters} />
       </div>
