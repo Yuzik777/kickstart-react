@@ -56,3 +56,8 @@ export interface FilterOptions {
   rangeFrom: string;
   rangeTo: string;
 }
+
+export interface FoundStock {
+  symbol: string;
+  companyName: string;
+}

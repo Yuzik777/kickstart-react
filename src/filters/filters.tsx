@@ -3,7 +3,7 @@ import { FilterOptions, sortingOption } from "../mocks";
 import "../main.css";
 
 interface OnFiltersApplied {
-  onFiltersApplied: (f: FilterOptions) => any;
+  onFiltersApplied: (f: FilterOptions) => void;
 }
 
 export const Filters: React.FC<FilterOptions & OnFiltersApplied> = props => {
